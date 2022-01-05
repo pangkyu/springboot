@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel = "stylesheet" href = "/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script src = "static/js/jquery-3.6.0.min.js"></script>
+    <script src = "/webjars/bootstrap/js/bootstrap.min.js"></script>
+    <!--방법2 <script src = "webjars/jquery/3.6.0/jquery.min.js></script> -->
 </head>
 <body>
-hello world
+<!--<p th:text ="${msg}"></p> -->
+<div th:object="${data}">
+    <p>이름 : <span th:if = "*{name == '이름'}">이름님 반갑습니다</span></p>
+    <p>이름 : <span th:if = "*{name.toString().equals('이름')}">이름님 반갑습니다</span></p>
+    <p>나이 : <span th:if = "*{age>15}">15세 이상입니다</span></p>
+    <p>나이 : <span th:unless = "*{age>15}">15세 이하입니다.</span></p> <!-- unless가 else역할 -->
+    <p>나이 : <span th:text = "*{age>15} ? '15세 이상' : '15세 이하'">15세 이상입니다</span></p>
+    <p>전화번호 : <span th:text = "*{tel}"></span></p>
+</div>
+<table>
+    <thead>
+    <tr>
+        <th>품명</th>
+        <th>가격</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each = "product : ${product}">
+        <td th:text = "${product.name}"></td>
+        <td th:text = "${product.price}"></td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

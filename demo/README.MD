@@ -87,9 +87,17 @@ public class HelloController {
    
    
    ---
-  제이쿼리 설정 
+  제이쿼리 설정
+  1)
   static - js - 생성
   application.properties에 
      spring.mvc.static-path-pattern=/static/** 입력해야 static 인식. (안하면 404) 
-     
+     spring.resources.static-locations=classpath:/static/
+     spring.resources.add-mappings=true
+    
+  2) 중앙집중형 
+   webjars.org에서 bootstrap검색후 복사 
+   build.gradle dependencies에 implementation '복사내용' 입력
+   제이쿼리도 동일하게.
  
+  버전에 상관없게 ==> https://mvnrepository.com/ 사이트에서 webjars 검색 

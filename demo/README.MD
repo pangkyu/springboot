@@ -141,3 +141,10 @@ public class TempController {
 </body>
 </html>
 ```
+
+ - @PathVariable => URI의 패턴에 구분자로 들어오는 값을 처리할 때 사용
+  ex) 
+        @RequestMapping("/temp/{code}/{id}")
+        public String temp( @PathVariable String code, @PathVariable int id )  
+        
+        temp/9999/90 등으로입력하면 데이터 전달됨 

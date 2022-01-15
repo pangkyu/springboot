@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "com.example.demo.mapper.BoardMapper" >
+
+    <!-- rename 할수있는 공간 -->
+    <resultMap id="BoardResult" type="BoardVO">
+        <id column="id" property="no"/>
+        <result column="title" property="title"/>
+        <result column="reg_date" property="regDate" javaType="java.sql.Date"/>
+    </resultMap>
+
+
+
+
+    <select id="selectItem" resultMap="boardResult">
+        SELECT id, title, content, writer, reg_date , count
+        FROM board
+
+        <!-- WHERE 예시
+        WHERE id <![CDATA[<]]]>0
+        WHERE id &lt; 0-->
+
+        <!-- where 예시
+        WHERE id IN
+        <foreach collection="idList" item = "idx" separator="," open ="(" close=")">  (1,2,3,4) 와 같이 출력됨
+            #{idx}
+        </foreach>
+
+        int[] idList = {1,2,3,4}-->
+
+
+        <!--where 예시
+        <where>
+            <if test = "title != null and title = ''">
+                AND title = #{title}
+            </if>
+            <if test="id >0">
+                AND id = 100
+            </if>
+        </where>-->
+        <!-- 주석처리된 부분을 위에있는 where 절로 바꿀 수 있음
+        <choose>
+            <when test="title != null">
+                AND title = #{title}
+            </when>
+            <otherwise>
+                AND id = 100
+            </otherwise>
+        </choose>
+        <if test = "title != null">
+            AND title = #{title}
+        </if>
+        <if test="id>0">
+            AND id = #{id}
+        </if> -->
+    </select>
+
+    <insert id = "insertItem">
+        쿼리문
+    </insert>
+    <update id="updateItem">
+        쿼리문
+    </update>
+    <delete id="deleteItem">
+        쿼리문
+    </delete>
+</mapper>
+
+<!--
+<mapper namespace="com.example.demo.mapper.BoardMapper">
+    CREATE table tbl (
+       id varchar(20) not null,
+       nm varchar(100) not null,
+       primary key(id)
+    )
+    <insert id="insertData" parameterType="TblVO">
+        <selectKey resultType = "string" order = "before" keyProperty = "idSeq">
+            SELECT CONCAT('tbl_id', DATE_FORMAT(NOW(), '%y%m%d%h%i%s')) AS idSeq FROM DUAL;
+        </selectKey>
+
+        INSERT INTO tbl(id, nm) values (#{idSeq}, #{nm})
+    </insert>
+</mapper>
+
+
+-->

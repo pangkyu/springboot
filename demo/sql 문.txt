@@ -1,0 +1,37 @@
+create table `board`(
+  `id` int(11) not null auto_increment COMMENT '일련번호',
+  `code` int(11) not null default 1000 COOMENT '게시판 구분 코드',
+  `title` varchar(255) not null COMMENT '제목',
+  `content` text not null COMMENT '게시물 내용',
+  `reg_id` varchar(20) not null COMMENT '작성자 id',
+  `reg_date` datetime not null COMMENT '작성일',
+  `mod_date` datetime default null COMMENT '수정일',
+  primary KEY(`id`)
+) ENGINE = MyISAM default CHARSET = utf8mb4 COMMNET '게시판';
+
+create table `member`(
+	`id` int(11) not null auto_increment COMMENT '일련번호',
+	`user_id` varchar(20) not null COMMENT '아이디',
+	`user_pw` varchar(255) not null COMMENT '비밀번호',
+	`user_name` varchar(100) not null COMMENT '이름',
+	`reg_date` datetime not null COMMENT '등록일',
+	primary key(`id`)
+) ENGINE = MyISAM default charset = utf8mb4 COMMENT = '회원 정보'
+
+create table `upload_file`(
+	`id` int(11) not null auto_increment COMMENT '파일 id',
+	`file_name` varchar(255) default null COMMENT '파일명',
+	`file_path` varchar(255) default null COMMENT '파일경로',
+	`content_type` varchar(255) default null COMMENT '파일타입',
+	`reg_date` datetime default current_timestamp() COMMENT '등록일',
+	primary key(`id`)
+) ENGINE = MyISAM default charset = utf8mb4 COMMENT = '에디터 이미지 첨부파일'
+
+create table `file_map`(
+	`id` int(11) not null auto_increment COMMENT 'id',
+	`board_id` int(11) not null COMMENT '게시물 id',
+	`file_id` int(11) not null COMMENT '파일 id',
+	primary key(`id`),
+	key `fk_board_id` (`board_id`),
+	key `fk_upload_file_id` (`file_id`)
+) ENGINE = MyISAM default charset = utf8mb4 COMMENT = '게시물의 첨부파일 번호'

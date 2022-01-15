@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
+    <script src="/webjars/jquery/jquery.min.js"></script>
+    <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <form class="container" layout:fragment="content">
+        <legend class="visually-hidden">게시물 작성</legend>
+        <input type="text" class="form-control" id="code" name="code">
+        <input type="text" class="form-control" id="regDate" name="regDate">
+        <div class="mb-3">
+            <label for="title" class="form-label">제목</label>
+            <input type="text" class="form-control" id="title" name="title" placeholder="제목">
+        </div>
+        <div class="mb-3">
+            <label for="regId" class="form-label">작성자</label>
+            <input type="text" class="form-control" id="regId" name="regId" placeholder="작성자">
+        </div>
+        <div class="mb-3">
+            <label for="content" class="form-label">내용</label>
+            <textarea class="form-control" id="content" name="content" rows="10" placeholder="내용"></textarea>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-center mb-3">
+            <button type="submit" class="btn btn-success">저장</button>
+            <a href="/board/list" class="btn btn-secondary">취소</a>
+        </div>
+    </form>
+</body>
+</html>

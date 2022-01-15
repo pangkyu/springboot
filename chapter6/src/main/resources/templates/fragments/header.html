@@ -32,8 +32,15 @@
             </a>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/board/list" class="nav-link">게시판</a></li>
+                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/board/list" class="nav-link">공지사항</a></li>
+                <li class="nav-item"><a href="/board/list" class="nav-link">갤러리</a></li>
+                <li class="nav-item" th:if="${session.isEmpty()}">
+                    <a href="/member/login" class="nav-link">로그인</a>
+                </li>
+                <li class="nav-item" th:unless="${session.isEmpty()}">
+                    <a href="/member/logout" class="nav-link">로그아웃</a>
+                </li>
             </ul>
         </header>
     </div>

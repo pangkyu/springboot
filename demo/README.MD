@@ -148,3 +148,11 @@ public class TempController {
         public String temp( @PathVariable String code, @PathVariable int id )  
         
         temp/9999/90 등으로입력하면 데이터 전달됨 
+---
+
+ # 퍼시스턴트 프레임워크 
+ 
+  - ORM(Object Relational Mapping)은 자바에서 쿼리문을 수행하고 결과를 출력할 수 있도록 jdbc api를 제공 
+  - ORM을 쓰면 직접적인 SQL문을 작성하지 않아도 되고, 객체와 데이터베이스의 데이터를 자동으로 매핑해준다. 
+  - 쿼리문을 작성하지 않아도 되기때문에 비즈니스 로직에 집중할 수 있다. 
+

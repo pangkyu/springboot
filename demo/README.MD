@@ -156,3 +156,10 @@ public class TempController {
   - ORM을 쓰면 직접적인 SQL문을 작성하지 않아도 되고, 객체와 데이터베이스의 데이터를 자동으로 매핑해준다. 
   - 쿼리문을 작성하지 않아도 되기때문에 비즈니스 로직에 집중할 수 있다. 
 
+--- 
+ - mybatis 문법
+   - choose, when, otherwise ==> if-else 처럼 비교연산을 할 수 있는 태그 
+   - collection : 참조할 배열 , item : 전달 받은 배열 이름을 아이템 태그의 값으로 대체 , index : 순번
+   - open : 구문 시작시 삽입할 문자열, close : 구문종료시 삽입할 문자열, separator : 반복문 사이에 삽입할 구분 문자열 
+   - 쿼리 작성시 <,>,&,|| 비교연산자 그냥 작성하면 xml오류 
+  

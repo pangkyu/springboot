@@ -163,3 +163,11 @@ public class TempController {
    - open : 구문 시작시 삽입할 문자열, close : 구문종료시 삽입할 문자열, separator : 반복문 사이에 삽입할 구분 문자열 
    - 쿼리 작성시 <,>,&,|| 비교연산자 그냥 작성하면 xml오류 
   
+
+---
+ - 어노테이션 
+   - service를 인터페이스로 생성했으니 구현재인 servicelmpl클래스를 생성, 서비스를 implement함 
+   - 구현채안에서 @Autowired 어노테이션을 써서 dao의 의존성을 주입 
+   - dao는 인터페이스로 지정하고 @Mapper 어노테이션을 적용하면 dao가 Mybatis와 연결됨
+
+ 

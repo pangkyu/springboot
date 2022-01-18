@@ -39,8 +39,8 @@
                 <div class="d-flex justify-content-between">
                     <input type="text" class="form-control" id="email" name="email" placeholder="이메일">
                     <button type="button" class="btn btn-secondary btn-dup" id="emailDup">중복확인</button>
+                    <p th:text="${valid_email}"></p>
                 </div>
-                <p th:text="${valid_email}"></p>
             </div>
             <div class="d-grid mb-3">
                 <button type="submit" id="btnSubmit" class="btn btn-primary">가입</button>

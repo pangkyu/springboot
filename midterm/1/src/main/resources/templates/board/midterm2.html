@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout"
+>
+
+<body>
+<section layout:fragment="content">
+
+    <form th:action="@{/board/midterm}" method="get">
+        <div style="width: 400px;  margin: 0 auto;">
+            <div>첫번째 숫자</div><br>
+            <input type="text" name="first" class = "form-control" th:value=${first} readonly/><br>
+            <div>두번재 숫자</div><br>
+            <input type="text" name="second"  class = "form-control"th:value=${second}  readonly/><br>
+            <br>
+            <div>연산자</div><br>
+            <select name ="operator"class="form-control">
+                <option value="+" th:selected = "${operator=='+'}">+</option>
+                <option value="-" th:selected = "${operator=='-'}">-</option>
+                <option value="*" th:selected = "${operator=='*'}">*</option>
+                <option value="/" th:selected = "${operator=='/'}">/</option>
+            </select><br>
+            <div>결과</div><br>
+            <input type="text" name="result" th:value=${result} style=" width: 400px; height:38px; border-radius:5px; padding-bottom:10px;" readonly/><br>
+            <br>
+            <button type="submit" class = "btn btn-primary">다시 계산하기</button>
+        </div>
+    </form>
+
+</section>
+
+</body>
+
+</html>

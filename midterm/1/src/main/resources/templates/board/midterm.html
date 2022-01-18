@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="layout/layout"
+>
+<body>
+<section layout:fragment="content">
+
+    <form th:action="@{/board/midterm2}" method="get">
+        <div style="width: 400px;  margin: 0 auto;">
+            <div>첫번째 숫자</div><br>
+            <input type="text" name="first" class = "form-control" th:value=${first} /><br>
+            <div>두번재 숫자</div><br>
+            <input type="text" name="second" class = "form-control" th:value=${second}/><br>
+            <br> <div>연산자</div><br>
+            <select name ="operator" class="form-control">
+                <option value="+" th:selected="${operator=='+'}">+</option>
+                <option value="-" th:selected="${operator=='-'}">-</option>
+                <option value="*" th:selected="${operator=='*'}">*</option>
+                <option value="/" th:selected="${operator=='/'}">/</option>
+            </select><br>
+            <br>
+            <button type="submit"  class="btn btn-primary">계산</button>
+        </div>
+    </form>
+
+</section>
+
+</body>
+
+</html>

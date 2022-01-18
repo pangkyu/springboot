@@ -7,14 +7,14 @@
 <section class="container" layout:fragment="content">
     <h2 class="visually-hidden">아이디 찾기</h2>
     <div class="d-flex justify-content-center">
-        <form class="col-md-4">
+        <form class="col-md-4" method="post" action="/member/find_id">
             <div class="form-group">
-                <label for="userId">이름</label>
-                <input type="text" class="form-control" id="userId" placeholder="이름">
+                <label for="name">이름</label>
+                <input type="text" class="form-control" id="name" name="name" placeholder="이름">
             </div>
             <div class="form-group mb-3">
                 <label for="email">이메일</label>
-                <input type="email" class="form-control" id="email" placeholder="email">
+                <input type="email" class="form-control" id="email" name="email" placeholder="email">
             </div>
             <div class="d-grid mb-3">
                 <button type="submit" class="btn btn-primary">아이디 찾기</button>

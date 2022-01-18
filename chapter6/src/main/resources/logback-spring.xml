@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <configuration>
-    <property name = "LOG_DIR" value = "C:/logs_files"/>
-    <property name = "LOG_PREFIX" value = "out"/>
+    <property name="LOG_DIR" value="C:/log_files" />
+    <property name="LOG_PREFIX" value="out" />
 
-    <appender name = "FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_DIR}/${LOG_PREFIX}.log</file>
-        <encoder class = "ch.qos.logback.classic.encoder.PatternLayoutEncoder">
-            <Pattern>%d{yyyy-MM-dd HH:mm:ss}- %-5level - %msg%n</Pattern>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level - %msg%n</pattern>
         </encoder>
 
-        <rollingPolicy class = "ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
             <fileNamePattern>${LOG_DIR}/archived/${LOG_PREFIX}.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class = "ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP" >
-                <maxFileSize>10MB</maxFileSize>
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>10MB</maxFileSize> <!-- 파일이 10MB가 넘어가면 위 패턴으로 저장한다 -->
             </timeBasedFileNamingAndTriggeringPolicy>
         </rollingPolicy>
     </appender>
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <!-- encoders are assigned the type ch.qos.logback.classic.encoder.PatternLayoutEncoder by default -->
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
     </appender>
 
-    <logger name = "jdbc" level = "OFF"/>
-    <logger name = "jdbc.connection" level = "OFF"/>
-    <logger name = "jdbc.sqlonly" level = "OFF"/>
-    <logger name = "jdbc.sqltiming" level = "BEBUG">
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="STDOUT"/>
+    <logger name="jdbc" level="OFF" additivity="false" />
+    <logger name="jdbc.connection" level="OFF" additivity="false" />
+    <logger name="jdbc.sqlonly" level="OFF" additivity="false" />
+    <logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
+        <!-- 파일로 보내고 싶으면 -->
+        <appender-ref ref="FILE"/> <!-- 파일로 저장해라 -->
+        <appender-ref ref="STDOUT"/> <!-- 콘솔창에 출력해라 -->
     </logger>
-    <logger name = "jdbc.audit" level = "OFF"/>
-    <logger name = "jdbc.resultset" level = "OFF"/>
-    <logger name = "jdbc.resultsettable" level = "BEBUG">
-        <appender-ref ref="FILE"/>
-        <appender-ref ref="STDOUT"/>
+    <logger name="jdbc.audit" level="OFF" additivity="false" />
+    <logger name="jdbc.resultset" level="OFF" additivity="false" />
+    <logger name="jdbc.resultsettable" level="DEBUG" additivity="false">
+        <appender-ref ref="FILE"/> <!-- 파일로 저장해라 -->
+        <appender-ref ref="STDOUT"/> <!-- 콘솔창에 출력해라 -->
     </logger>
 
     <root level="info">

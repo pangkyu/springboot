@@ -1,11 +1,15 @@
 package com.example.chapter6.model;
 
-import lombok.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @ToString
@@ -22,11 +26,11 @@ public class MemberVO {
     private String email;
 
     @NotBlank(message = "비밀번호를 입력하세요.")
-    @Pattern(regexp = "^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$", message = "비밀번호는 영문, 숫자, 특수기호가 최소 1개 이상 포함되어야합니다.")
+    @Pattern(regexp = "^.*(?=^.{8,15}$)(?=.*\\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&+=]).*$", message = "비밀번호는 영문, 숫자, 특수기호가 최소 1개 이상 포함된 8~15자리어야 합니다.")
     private String password;
 
     @NotBlank(message = "이름을 입력하세요.")
-    @Size(min = 2, max = 10, message = "이름은 최소 2자 이상 10자 이하로 입력하세요.")
+    @Size(min = 2, max = 10, message = "이름은 최소 2자 이상 최대 10자 이하로 입력하세요.")
     private String name;
 
     private int level;

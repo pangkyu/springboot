@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <th:block th:fragment="headerFragment">
@@ -32,15 +33,8 @@
             </a>
 
             <ul class="nav nav-pills">
-                <li class="nav-item"><a href="/" class="nav-link" aria-current="page">Home</a></li>
-                <li class="nav-item"><a href="/board/list?srchCode=1000" class="nav-link">공지사항</a></li>
-                <li class="nav-item"><a href="/board/list?srchCode=2000" class="nav-link">갤러리</a></li>
-                <li class="nav-item" th:if="${session.isEmpty()}">
-                    <a href="/member/login" class="nav-link">로그인</a>
-                </li>
-                <li class="nav-item" th:unless="${session.isEmpty()}">
-                    <a href="/member/logout" class="nav-link">로그아웃</a>
-                </li>
+                <li class="nav-item"><a href="/" class="nav-link active" aria-current="page">Home</a></li>
+                <li class="nav-item"><a href="/board/list" class="nav-link">게시판</a></li>
             </ul>
         </header>
     </div>

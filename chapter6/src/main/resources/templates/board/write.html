@@ -9,29 +9,65 @@
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css" />
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
+
+
+    <!-- 에디터 -->
+    <script src="/smarteditor2/js/HuskyEZCreator.js"></script>
 </head>
+
 <body>
-    <form class="container" layout:fragment="content">
-        <legend class="visually-hidden">게시물 작성</legend>
-        <input type="text" class="form-control" id="code" name="code">
-        <input type="text" class="form-control" id="regDate" name="regDate">
-        <div class="mb-3">
-            <label for="title" class="form-label">제목</label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="제목">
-        </div>
-        <div class="mb-3">
-            <label for="regId" class="form-label">작성자</label>
-            <input type="text" class="form-control" id="regId" name="regId" placeholder="작성자">
-        </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">내용</label>
-            <textarea class="form-control" id="content" name="content" rows="10" placeholder="내용"></textarea>
-        </div>
-        <hr>
-        <div class="d-flex justify-content-center mb-3">
-            <button type="submit" class="btn btn-success">저장</button>
-            <a href="/board/list" class="btn btn-secondary">취소</a>
-        </div>
-    </form>
+<form id="writeForm" class="container" layout:fragment="content" method="post" action="/board/save">
+    <legend class="visually-hidden">게시물 작성</legend>
+    <input type="hidden" class="form-control" id="id" name="id" th:value="${boardVO.id}">
+    <input type="hidden" class="form-control" id="code" name="code" th:value="${boardVO.code}">
+    <!-- <input type="text" class="form-control" id="regDate" name="regDate"> -->
+    <div class="mb-3">
+        <label for="title" class="form-label">제목</label>
+        <input type="text" class="form-control" id="title" name="title" placeholder="제목" th:value="${boardVO.title}">
+    </div>
+    <!--
+    <div class="mb-3">
+        <label for="regId" class="form-label">작성자</label>
+        <input type="text" class="form-control" id="regId" name="regId" placeholder="작성자">
+    </div>
+    -->
+    <div class="mb-3">
+        <label for="content" class="form-label">내용</label>
+        <textarea class="form-control" id="content" name="content" rows="10" placeholder="내용" th:utext="${boardVO.content}"></textarea>
+    </div>
+    <hr>
+    <div class="d-flex justify-content-center mb-3">
+        <button type="submit" class="btn btn-success">저장</button>
+        <a href="/board/list" class="btn btn-secondary">취소</a>
+    </div>
+
+    <script>
+            $(function() {
+                var oEditor = [];
+                nhn.husky.EZCreator.createInIFrame({
+                    oAppRef: oEditors,
+                    elPlaceHolder: "content",
+                    sSkinURI: "/smarteditor2/SmartEditor2Skin.html",
+                    fCreator: "createSEditor2",
+                    htParams : {
+                        bUseToolbar : true,
+                        bUseVerticalResizer : true,
+                        bUseModeChanger : true,
+                        bSkipXssFilter : true,
+                    },
+                    fOnAppLoad : function() {
+                    },
+                    fCreator : "createSEditor2"
+                });
+
+                $('#writeForm').submit(function(e) {
+                    e.preventDefault();
+                    oEditor.getById["content"].exec("UPDATE_CONTENTS_FIELD", []);
+                    var content = $('content').val();
+                    this.submit();
+                });
+            });
+        </script>
+</form>
 </body>
 </html>

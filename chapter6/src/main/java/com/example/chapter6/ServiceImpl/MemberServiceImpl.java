@@ -65,7 +65,7 @@ public class MemberServiceImpl implements MemberService {
             // 세션 정보 생성
             HttpSession session = request.getSession();
             session.setAttribute("memberVO", result);
-            // 유휴상태 지속되면 자동으로 세션 삭제
+            // 유효상태 지속되면 자동으로 세션 삭제
             session.setMaxInactiveInterval(60);
             return true;
         }

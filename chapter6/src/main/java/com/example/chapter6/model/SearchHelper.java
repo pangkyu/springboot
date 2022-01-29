@@ -12,8 +12,8 @@ import lombok.ToString;
 public class SearchHelper {
 
     private int srchCode = 1000;
-    private String srchType;
-    private String srchKeyword;
+    private String srchType = "";
+    private String srchKeyword = "";
 
     // 한 페이지에 출력될 row 개수
     private int pageSize = 10;

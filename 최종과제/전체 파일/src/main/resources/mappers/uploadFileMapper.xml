@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.chapter6.mapper.UploadFileMapper">
+
+<!--    파일 저장-->
+    <insert id="insertUploadFile" parameterType="UploadFileVO" useGeneratedKeys="true" keyProperty="id">
+        insert into upload_file(
+            file_name,
+            file_path,
+            content_type,
+            save_file_name,
+            size,
+            reg_date
+        ) values(
+            #{fileName},
+            #{filePath},
+            #{contentType},
+            #{saveFileName},
+            #{size},
+            Now()
+        )
+    </insert>
+
+<!--    게시판 id로 파일 조회-->
+    <select id="selectFileByBoardId" parameterType="int" resultType="UploadFileVO">
+        select
+            uf.id,
+            uf.file_name,
+            uf.file_path,
+            uf.content_type,
+            uf.size,
+            uf.save_file_name,
+            uf.reg_date
+        from file_map fm left join upload_file uf on fm.file_id = uf.id
+        where fm.board_id = #{boardId}
+    </select>
+
+<!--    파일 id로 파일 조회-->
+    <select id="selectFileById" parameterType="int" resultType="UploadFileVO">
+        select
+            uf.id,
+            uf.file_name,
+            uf.file_path,
+            uf.content_type,
+            uf.size,
+            uf.save_file_name,
+            uf.reg_date
+        from upload_file uf
+        where uf.id = #{fileId}
+    </select>
+
+<!--    첨부 삭제 -->
+    <delete id="deleteFileById" parameterType="int">
+        delete from upload_file where id = #{fileId};
+        delete from file_map where file_id = #{fileId};
+    </delete>
+    
+</mapper>

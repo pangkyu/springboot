@@ -3,6 +3,7 @@ package com.example.chapter6.member.controller;
 import com.example.chapter6.model.MemberVO;
 import com.example.chapter6.model.Message;
 import com.example.chapter6.service.MemberService;
+import com.example.chapter6.util.Util;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -164,7 +165,7 @@ public class MemberController {
             //out.println("<script>alert('찾으시는 ID는 " + id + "입니다.'); location.href='/member/login';</script>"); // 자바스크립트 코드 그대로 쓰기
             //out.flush(); // 내용 삭제
 
-            if (id == null) {
+            if (name == null) {
                 // 찾는 아이디가 없음
                 mav.addObject("data", new Message("찾으시는 게정이 없습니다.", "/member/login"));
                 mav.setViewName("message/message");
@@ -222,6 +223,18 @@ public class MemberController {
 
             String id = memberService.findPassword(memberVO);
 
+            if(id == null){
+                mav.addObject("data", new Message("찾으시는 계정이 없습니다", "/member/find_pw"));
+                mav.setViewName("message/message");
+                return mav;
+            }else{
+                String pw = Util.generateRandomString(10);
+                memberVO.setPassword("1111");
+                memberService.updatePassword(memberVO);
+                mav.addObject("data", new Message("변경된 비밀번호는 " + pw + "입니다", "/member/login"));
+                mav.setViewName("message/message");
+                return mav;
+            }
         }
 
         mav.addObject("data", new Message("입력 정보를 확인하세요.", "/member/find_pw"));

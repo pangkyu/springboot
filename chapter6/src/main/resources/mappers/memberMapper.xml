@@ -27,10 +27,38 @@
         ) VALUES (
         #{userId},
         #{email},
-        #{password},
+        SHA2(#{password}, 256),
         #{name},
         NOW()
         )
     </insert>
 
+    <!-- 로그인 처리 -->
+    <select id="loginProcess" parameterType="MemberVO" resultType="MemberVO">
+        SELECT id, user_id, email, name
+        FROM member
+        WHERE user_id = #{userId} AND password = SHA2(#{password}, 256)
+
+    </select>
+
+    <!-- 아이디 찾기 -->
+    <select id="findUserId" parameterType="MemberVO" resultType="String">
+        SELECT user_id AS userId
+        FROM member
+        WHERE name = #{name} AND email = #{email}
+    </select>
+
+    <!-- 비밀ㄹ번호 찾기 -->
+    <select id="findPassword" parameterType="MemberVO" resultType="String">
+        SELECT user_id AS userId
+        FROM member
+        WHERE name = #{name} AND email = #{email} AND user_id = #{userId}
+    </select>
+    <!-- 비밀번호 변경 -->
+    <update id="updatePassword" parameterType="MemberVO">
+        UPDATE member SET
+            password = SHA2(#{password}, 256)
+        WHERE name = #{name} AND email = #{email} AND user_id = #{userId}
+
+    </update>
 </mapper>
